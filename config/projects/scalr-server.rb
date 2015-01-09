@@ -10,11 +10,15 @@ build_iteration 1
 # Creates required build directories
 dependency "preparation"
 
+dependency "chef-gem" # for embedded chef-solo
+
+
 # test dependencies/components
 # dependency "somedep"
 
 # Version manifest file
 dependency "version-manifest"
+dependency "version-manifest-json"
 
 exclude "**/.git"
 exclude "**/bundler/git"
