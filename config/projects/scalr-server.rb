@@ -12,8 +12,9 @@ dependency 'preparation'
 
 dependency 'chef-gem' # for embedded chef-solo
 
-# Actual package
-dependency 'scalr-server-cookbooks'
+# Actual software
+dependency 'scalr-server-cookbooks'   # Cookbooks to configure Scalr
+dependency 'scalr-server-ctl'         # CLI to run chef-solo and actions (scalr-server-ctl)
 
 
 # test dependencies/components
