@@ -34,6 +34,6 @@ build do
 
   # Add the package and all the dependencies (NOTE: unfortunately this copies the scalr-server cookbook again)
   command "mkdir -p #{install_dir}/embedded"
-  command "berks package #{install-dir}/#{berks_pkg}"
+  command "berks package #{install_dir}/#{berks_pkg}"
   command "cd #{install_dir}/embedded && rm -rf ./cookbooks && tar -xzvf #{berks_pkg} && rm #{berks_pkg}"
 end
