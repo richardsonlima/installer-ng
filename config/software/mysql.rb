@@ -1,5 +1,5 @@
 
-name 'mysql-server'
+name 'mysql'
 default_version '5.6.22'
 
 dependency 'zlib'

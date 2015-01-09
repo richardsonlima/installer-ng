@@ -27,7 +27,6 @@ dependency 'libxslt'
 dependency 'libxml2'
 dependency 'libiconv'
 dependency 'openssl'
-dependency 'gd'
 dependency 'libmcrypt'
 dependency 'mysql'
 
@@ -48,10 +47,9 @@ build do
           " --with-libxml-dir=#{install_dir}/embedded" \
           " --with-iconv=#{install_dir}/embedded" \
           " --with-openssl-dir=#{install_dir}/embedded" \
-          " --with-gd=#{install_dir}/embedded" \
           ' --with-libedit' \
           " --with-mysql=#{install_dir}/embedded" \
-          " --with-mysqli=#{install_dir}/bin/mysql_config" \
+          " --with-mysqli=#{install_dir}/embedded/bin/mysql_config" \
           " --with-pdo-mysql=#{install_dir}/embedded" \
           " --with-mcrypt=#{install_dir}/embedded" \
           ' --enable-pcntl' \
