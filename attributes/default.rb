@@ -10,8 +10,8 @@ default[:scalr_server][:app][:email_from_address] = 'scalr@scalr.example.com'
 default[:scalr_server][:app][:email_from_name] = 'Scalr Service'
 
 default[:scalr_server][:app][:endpoint_scheme] = 'http'
-default[:scalr_server][:app][:endpoint_host_ip] = '127.0.0.1'
-default[:scalr_server][:app][:endpoint_host] = node.scalr_server.app.endpoint_host_ip
+default[:scalr_server][:app][:endpoint_ip_range] = '127.0.0.1/32'
+default[:scalr_server][:app][:endpoint_host] = 'localhost'
 
 # MySQL tunables
 default[:scalr_server][:mysql][:enable] = true

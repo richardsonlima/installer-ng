@@ -49,7 +49,7 @@ scalr:
     host: <%= node[:scalr_server][:app][:endpoint_host] %>
 
   aws:
-    ip_pool: ['<%= node[:scalr_server][:app][:endpoint_host_ip] %>/32']
+    ip_pool: ['<%= node[:scalr_server][:app][:endpoint_ip_range] %>']
     security_group_name: scalr.<%= node[:scalr_server][:app][:id] %>.ip-pool
 
   billing:
