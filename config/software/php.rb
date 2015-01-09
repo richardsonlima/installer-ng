@@ -47,7 +47,7 @@ build do
           " --with-libxml-dir=#{install_dir}/embedded" \
           " --with-iconv=#{install_dir}/embedded" \
           " --with-openssl-dir=#{install_dir}/embedded" \
-          ' --with-libedit' \
+          " --with-libedit-dir=#{install_dir}/embedded" \
           " --with-mysql=#{install_dir}/embedded" \
           " --with-mysqli=#{install_dir}/embedded/bin/mysql_config" \
           " --with-pdo-mysql=#{install_dir}/embedded" \
