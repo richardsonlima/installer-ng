@@ -12,6 +12,4 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
 
   make "-j #{workers} prefix=#{install_dir}/embedded install", env: env
-
-  # TODO - Remove libredhat-kernel.so??
 end
