@@ -27,12 +27,7 @@ build do
               "-DCMAKE_INSTALL_PREFIX=#{install_dir}/embedded",
               # Lib flags
               '-DWITH_SSL=system',
-              "-DOPENSSL_INCLUDE_DIR:PATH=#{install_dir}/embedded/include",
-              "-DOPENSSL_LIBRARIES:FILEPATH=#{install_dir}/embedded/lib/libssl.so",
               '-DWITH_ZLIB=system',
-              "-DZLIB_INCLUDE_DIR:PATH=#{install_dir}/embedded/include",
-              "-DZLIB_LIBRARY:FILEPATH=#{install_dir}/embedded/lib/libz.so",
-              "-DCRYPTO_LIBRARY:FILEPATH=#{install_dir}/embedded/lib/libcrypto.so",
               # Feature flags
               '-DDEFAULT_CHARSET=utf8',
               '-DDEFAULT_COLLATION=utf8_unicode_ci',
