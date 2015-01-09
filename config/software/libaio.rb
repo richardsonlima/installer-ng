@@ -1,4 +1,4 @@
-name 'aio'
+name 'libaio'
 default_version '0.3.110'
 
 # Note: we are getting this from Debian, because we trust Debian as a source, but the package has nothing
