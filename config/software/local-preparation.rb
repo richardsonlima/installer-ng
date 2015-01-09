@@ -16,13 +16,14 @@
 #
 
 name 'preparation'
-description 'the steps required to preprare the build'
+description 'the steps required to prepare the build'
 default_version '1.0.0'
 
 build do
   block do
-    command "touch -a #{install_dir}/embedded/lib/.gitkeep"
-    command "touch -a #{install_dir}/embedded/bin/.gitkeep"
-    command "touch -a #{install_dir}/bin/.gitkeep"
+    %w{embedded/lib embedded/bin bin}.each do |dir|
+      command "mkdir -p #{install_dir}/#{dir}"
+      command "touch -a #{install_dir}/.gitkeep"
+    end
   end
 end
