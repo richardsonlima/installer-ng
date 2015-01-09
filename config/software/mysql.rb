@@ -2,9 +2,9 @@
 name 'mysql-server'
 default_version '5.6.22'
 
-dependency 'openssl'
 dependency 'zlib'
 dependency 'ncurses'
+dependency 'openssl'
 
 
 source  :url => "http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-#{version}.tar.gz",
@@ -19,9 +19,26 @@ build do
 
   command 'cmake -DBUILD_CONFIG=mysql_release .', env: env
 
-  command "./configure" \
-          " --prefix=#{install_dir}/embedded" \
-          " --exec-prefix=#{install_dir}/embedded", env: env
+  command [
+              'cmake',
+              # General flags
+              '-DCMAKE_SKIP_RPATH=YES',
+              '-DBUILD_CONFIG=mysql_release',
+              # Path flag
+              "-DCMAKE_INSTALL_PREFIX=#{install_dir}/embedded",
+              # Lib flags
+              '-DWITH_SSL=system',
+              "-DOPENSSL_INCLUDE_DIR:PATH=#{install_dir}/embedded/include",
+              "-DOPENSSL_LIBRARIES:FILEPATH=#{install_dir}/embedded/lib/libssl.so",
+              "-DWITH_ZLIB=system",
+              "-DZLIB_INCLUDE_DIR:PATH=#{install_dir}/embedded/include",
+              "-DZLIB_LIBRARY:FILEPATH=#{install_dir}/embedded/lib/libz.so",
+              "-DCRYPTO_LIBRARY:FILEPATH=#{install_dir}/embedded/lib/libcrypto.so",
+              # Feature flags
+              '-DDEFAULT_CHARSET=utf8',
+              '-DDEFAULT_COLLATION=utf8_unicode_ci',
+              ".",
+          ].join(' '), :env => env
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env
