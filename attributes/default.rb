@@ -1,3 +1,29 @@
+default[:scalr_server][:config_dir] = '/etc/scalr-server'
+
+
+default[:scalr_server][:app][:enable] = true
+default[:scalr_server][:app][:admin_user] = 'admin'
+default[:scalr_server][:app][:admin_password] = 'CHANGEME'
+default[:scalr_server][:app][:id] = 'CHANGEME'
+
+default[:scalr_server][:mysql][:enable] = true
+default[:scalr_server][:mysql][:host] = 'localhost'
+default[:scalr_server][:mysql][:port] = 3306
+default[:scalr_server][:mysql][:scalr_user] = 'scalr'
+default[:scalr_server][:mysql][:root_password] = 'CHANGEME'
+default[:scalr_server][:mysql][:scalr_password] = 'CHANGEME'
+default[:scalr_server][:mysql][:server_debian_password] = 'CHANGEME'
+default[:scalr_server][:mysql][:server_repl_password] = 'CHANGEME'
+default[:scalr_server][:mysql][:scalr_allow_connections_from] = '%'
+default[:scalr_server][:mysql][:scalr_dbname] = 'scalr'
+default[:scalr_server][:mysql][:analytics_dbname] = 'analytics'
+
+# Attributes includes from other cookbooks. We need to include those because we refer to them in our own recipes,
+# and don't want to have to ensure that those cookbooks are in the runlist to be able to use the attributes.
+include_attribute  'rackspace_timezone'
+include_attribute  'php'
+
+
 # Scalr attributes
 default[:scalr][:id] ='unset'
 
@@ -31,20 +57,6 @@ default[:scalr][:python][:venv_force_install] = [['httplib2', nil], ['pymysql', 
 # Misc dirs
 default[:scalr][:core][:log_dir] = '/var/log/scalr'
 default[:scalr][:core][:pid_dir] = '/var/run/scalr'
-
-# User settings
-default[:scalr][:admin][:username] = 'admin'
-default[:scalr][:admin][:password] = 'scalr'
-
-# Database settings
-default[:scalr][:database][:username] = 'scalr'
-default[:scalr][:database][:password] = 'scalr'
-default[:scalr][:database][:host] = 'localhost'
-default[:scalr][:database][:port] = 3306
-default[:scalr][:database][:scalr_dbname] = 'scalr'
-default[:scalr][:database][:analytics_dbname] = 'analytics'
-
-default[:scalr][:database][:client_host] = 'localhost'  # Where will the client connect from?
 
 # Email settings
 default[:scalr][:email][:from] = 'scalr@scalr.example.com'
