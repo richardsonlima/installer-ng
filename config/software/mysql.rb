@@ -4,8 +4,9 @@ default_version '5.6.22'
 
 dependency 'zlib'
 dependency 'ncurses'
+dependency 'libedit'
 dependency 'openssl'
-dependency 'aio'
+dependency 'libaio'
 
 
 source  :url => "http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-#{version}.tar.gz",
@@ -26,8 +27,9 @@ build do
               # Path flag
               "-DCMAKE_INSTALL_PREFIX=#{install_dir}/embedded",
               # Lib flags
-              '-DWITH_SSL=system',
               '-DWITH_ZLIB=system',
+              '-DWITH_SSL=system',
+              '-DWITH_EDITLINE=system',
               # Feature flags
               '-DDEFAULT_CHARSET=utf8',
               '-DDEFAULT_COLLATION=utf8_unicode_ci',
