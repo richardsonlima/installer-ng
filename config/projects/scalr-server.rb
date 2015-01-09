@@ -18,7 +18,6 @@ dependency "chef-gem" # for embedded chef-solo
 
 # Version manifest file
 dependency "version-manifest"
-dependency "version-manifest-json"
 
 exclude "**/.git"
 exclude "**/bundler/git"
