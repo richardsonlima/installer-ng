@@ -3,7 +3,7 @@ maintainer       'Thomas Orozco'
 maintainer_email 'thomas@scalr.com'
 license          'Apache License 2.0'
 description      'Installs/Configures Scalr Core'
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+long_description IO.read(File.join(File.dirname(__FILE__), '..', '..', '..', 'README.md'))
 version          '7.9.3'
 
 %w{ ubuntu centos redhat }.each do |os|

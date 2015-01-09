@@ -17,20 +17,23 @@
 ##
 #
 
-name "scalr-server-cookbooks"
+name 'scalr-server-cookbooks'
 
-dependency "berkshelf"
-dependency "rsync"
+dependency 'berkshelf'
+dependency 'rsync'
 
-source :path => File.expand_path("files/scalr-server-cookbooks", Omnibus.project_root)
+# Can I use 'name' here?
+source :path => File.expand_path('files/scalr-server-cookbooks', Omnibus.project_root)
 
-# TODO - Use berks here to just package the cookbooks
+berks_pkg = 'pkg.tar.gz'
+
 build do
+  # Add the extra files and our cookbook
   command "mkdir -p #{install_dir}/embedded/cookbooks"
   command "#{install_dir}/embedded/bin/rsync --delete -a ./ #{install_dir}/embedded/cookbooks/"
-  block do
-    File.open("#{install_dir}/embedded/cookbooks/pre_upgrade_setup.json", "w") do |f|
-      f.puts "{\"run_list\": [ \"recipe[#{project.name}::pre_11.1_upgrade_setup]\" ]}"
-    end
-  end
+
+  # Add the package and all the dependencies (NOTE: unfortunately this copies the scalr-server cookbook again)
+  command "mkdir -p #{install_dir}/embedded"
+  command "berks package #{install-dir}/#{berks_pkg}"
+  command "cd #{install_dir}/embedded && rm -rf ./cookbooks && tar -xzvf #{berks_pkg} && rm #{berks_pkg}"
 end
