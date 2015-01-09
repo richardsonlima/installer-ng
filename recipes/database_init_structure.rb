@@ -10,7 +10,7 @@ end
 mysql_database 'load scalr database structure' do
   connection      mysql_user_params(node)
   database_name   node[:scalr_server][:mysql][:scalr_dbname]
-  sql             { ::File.open("#{node[:scalr_server][:core][:location]}/sql/structure.sql").read }
+  sql             { ::File.open("#{node[:scalr][:core][:location]}/sql/structure.sql").read }
   not_if          { mysql_has_table?(mysql_root_params(node), node[:scalr_server][:mysql][:scalr_dbname], canary_table) }
   action          :query
 end
