@@ -5,6 +5,7 @@ default_version '5.6.22'
 dependency 'zlib'
 dependency 'ncurses'
 dependency 'openssl'
+dependency 'aio'
 
 
 source  :url => "http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-#{version}.tar.gz",
