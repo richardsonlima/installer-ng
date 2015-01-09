@@ -6,6 +6,9 @@ default[:scalr_server][:app][:admin_user] = 'admin'
 default[:scalr_server][:app][:admin_password] = 'CHANGEME'
 default[:scalr_server][:app][:id] = 'CHANGEME'
 
+default[:scalr_server][:app][:email_from_address] = 'scalr@scalr.example.com'
+default[:scalr_server][:app][:email_from_name] = 'Scalr Service'
+
 default[:scalr_server][:mysql][:enable] = true
 default[:scalr_server][:mysql][:host] = 'localhost'
 default[:scalr_server][:mysql][:port] = 3306
@@ -23,28 +26,23 @@ default[:scalr_server][:mysql][:analytics_dbname] = 'analytics'
 include_attribute  'rackspace_timezone'
 include_attribute  'php'
 
-
-# Scalr attributes
-default[:scalr][:id] ='unset'
-
-# Users
+# Likewise.
 default[:scalr][:core][:group] = 'scalr'
 default[:scalr][:core][:users][:service] = 'root'
 default[:scalr][:core][:users][:web] = value_for_platform_family('rhel' => 'apache', 'fedora' => 'apache', 'debian' => 'www-data')
 
-#TODO -> Move to :deployment
+# None of this will be configurable in the long run (i.e. when we have omnibus).
 default[:scalr][:package][:name] = 'scalr'
 default[:scalr][:package][:revision] = 'HEAD'
 default[:scalr][:package][:repo] = 'https://github.com/Scalr/scalr.git'
 default[:scalr][:package][:deploy_to] = '/opt/scalr'
-
 default[:scalr][:package][:version] = '5.1'
 default[:scalr][:package][:version_obj] = Gem::Version.new(node.scalr.package.version)
 
-# Only used if deploying from a private repo
+# Will be removed when we have omnibus.
 default[:scalr][:deployment][:ssh_key] = ''
 
-# Useful locations for Scalr
+# Will change and become non-configurable when we have omnibus
 default[:scalr][:core][:location] = File.join(node.scalr.package.deploy_to, 'current')
 default[:scalr][:core][:configuration] = "#{node.scalr.core.location}/app/etc/config.yml"
 default[:scalr][:core][:cryptokey_path] = "#{node[:scalr][:core][:location]}/app/etc/.cryptokey"
@@ -54,13 +52,9 @@ default[:scalr][:python][:venv] = "#{node.scalr.package.deploy_to}/venv"
 
 default[:scalr][:python][:venv_force_install] = [['httplib2', nil], ['pymysql', nil], ['cherrypy', '3.2.6'], ['pytz', nil]]
 
-# Misc dirs
+# Will change and become non-configurable when we have omnibus
 default[:scalr][:core][:log_dir] = '/var/log/scalr'
 default[:scalr][:core][:pid_dir] = '/var/run/scalr'
-
-# Email settings
-default[:scalr][:email][:from] = 'scalr@scalr.example.com'
-default[:scalr][:email][:name] = 'Scalr Service'
 
 # Host settings
 default[:scalr][:endpoint][:scheme] = 'http'

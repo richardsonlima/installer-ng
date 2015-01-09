@@ -8,8 +8,8 @@ scalr:
       name: <%= node[:scalr_server][:mysql][:scalr_dbname] %>
 
   email:
-    address: <%= node[:scalr][:email][:from] %>
-    name: <%= node[:scalr][:email][:name] %>
+    address: <%= node[:scalr_server][:app][:email_from_address] %>
+    name: <%= node[:scalr_server][:app][:email_from_name] %>
 
   auth_mode: scalr
 
