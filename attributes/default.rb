@@ -1,6 +1,6 @@
 default[:scalr_server][:config_dir] = '/etc/scalr-server'
 
-
+# App tunables
 default[:scalr_server][:app][:enable] = true
 default[:scalr_server][:app][:admin_user] = 'admin'
 default[:scalr_server][:app][:admin_password] = 'CHANGEME'
@@ -9,6 +9,11 @@ default[:scalr_server][:app][:id] = 'CHANGEME'
 default[:scalr_server][:app][:email_from_address] = 'scalr@scalr.example.com'
 default[:scalr_server][:app][:email_from_name] = 'Scalr Service'
 
+default[:scalr_server][:app][:endpoint_scheme] = 'http'
+default[:scalr_server][:app][:endpoint_host_ip] = '127.0.0.1'
+default[:scalr_server][:app][:endpoint_host] = node.scalr.endpoint.host_ip
+
+# MySQL tunables
 default[:scalr_server][:mysql][:enable] = true
 default[:scalr_server][:mysql][:host] = 'localhost'
 default[:scalr_server][:mysql][:port] = 3306
@@ -26,12 +31,12 @@ default[:scalr_server][:mysql][:analytics_dbname] = 'analytics'
 include_attribute  'rackspace_timezone'
 include_attribute  'php'
 
-# Likewise.
+# None of what is found below will be configurable in the long run (i.e. when we have omnibus).
+
 default[:scalr][:core][:group] = 'scalr'
 default[:scalr][:core][:users][:service] = 'root'
 default[:scalr][:core][:users][:web] = value_for_platform_family('rhel' => 'apache', 'fedora' => 'apache', 'debian' => 'www-data')
 
-# None of this will be configurable in the long run (i.e. when we have omnibus).
 default[:scalr][:package][:name] = 'scalr'
 default[:scalr][:package][:revision] = 'HEAD'
 default[:scalr][:package][:repo] = 'https://github.com/Scalr/scalr.git'
@@ -49,17 +54,11 @@ default[:scalr][:core][:cryptokey_path] = "#{node[:scalr][:core][:location]}/app
 default[:scalr][:core][:id_path] = "#{node[:scalr][:core][:location]}/app/etc/id"
 
 default[:scalr][:python][:venv] = "#{node.scalr.package.deploy_to}/venv"
-
 default[:scalr][:python][:venv_force_install] = [['httplib2', nil], ['pymysql', nil], ['cherrypy', '3.2.6'], ['pytz', nil]]
 
 # Will change and become non-configurable when we have omnibus
 default[:scalr][:core][:log_dir] = '/var/log/scalr'
 default[:scalr][:core][:pid_dir] = '/var/run/scalr'
-
-# Host settings
-default[:scalr][:endpoint][:scheme] = 'http'
-default[:scalr][:endpoint][:host_ip] = '127.0.0.1'
-default[:scalr][:endpoint][:host] = node.scalr.endpoint.host_ip
 
 # Instance connection settings
 default[:scalr][:instances_connection_policy] = 'auto'
