@@ -23,7 +23,7 @@ dependency 'berkshelf'
 dependency 'rsync'
 
 # Can I use 'name' here?
-source :path => File.expand_path('files/scalr-server-cookbooks', Omnibus.project_root)
+source :path => File.expand_path('files/scalr-server-cookbooks', Config.project_root)
 
 berks_pkg = 'pkg.tar.gz'
 
