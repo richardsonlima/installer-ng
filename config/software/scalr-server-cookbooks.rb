@@ -22,8 +22,10 @@ name 'scalr-server-cookbooks'
 dependency 'berkshelf'
 dependency 'rsync'
 
+always_build true
+
 # Can I use 'name' here?
-source :path => File.expand_path('files/scalr-server-cookbooks', Config.project_root)
+source :path => File.expand_path('files/scalr-server-cookbooks', Omnibus::Config.project_root)
 
 berks_pkg = 'pkg.tar.gz'
 
